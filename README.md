@@ -6,7 +6,7 @@ RNA_Seq Python Pipeline
 ## pipeline.py 
 
 + this is the main script file.
-    + you can use the functions below importing subscript files.
++ you can use the functions below importing subscript files.
 
 ## getFiles.py
 
