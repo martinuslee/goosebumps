@@ -1,4 +1,4 @@
-# rna-seq-pipeline
+# Rna-Seq-pipeline
 RNA_Seq Python Pipeline 
 
 ## pipeline.py 
