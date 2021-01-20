@@ -1,6 +1,10 @@
 # Rna-Seq-pipeline
 RNA_Seq Python Pipeline 
 
+requirement : python3 fastqc trimmomatic star
+Biopython, gzip, wget 
+
+
 -------------------------------
 
 ## pipeline.py 
