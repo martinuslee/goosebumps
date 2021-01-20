@@ -1,4 +1,4 @@
-# Rna-Seq-pipeline
+# RNA-Seq-pipeline
 RNA_Seq Python Pipeline 
 
 requirement : python3 fastqc trimmomatic star
