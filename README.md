@@ -17,6 +17,16 @@ Biopython, gzip, wget
 Download reference files on Ensembl DB through wget 
 if the files already exists, you can pass this step through input 'n' 
 
+pipeline.py
+```c
+checkFiles = input("Do you want to download ref files [Y/n]$ ");
+if(checkFiles == 'Y'):
+    import getFiles
+else:
+    pass
+```
+
+getfiles.py functions
 ```c
 
 def bar_custom(current, total, width=80):
