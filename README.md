@@ -30,6 +30,13 @@ getfiles.py functions
 
 input : release version, species, reference Id, output dir path
 ```c
+p_a = "ftp://ftp.ensembl.org/pub/release-"+release+"/fasta/"+species+"/dna/"+Species+ dot + refID + dot + "dna.primary_assembly.fa.gz"
+ensembl = "ftp://ftp.ensembl.org/pub/release-"+release+"/gtf/"+species+ slash +Species+ dot + refID +dot + release + ".gtf.gz"
+
+link = [p_a,ensembl]
+```
+
+```c
 
 def bar_custom(current, total, width=80):
     width=30
