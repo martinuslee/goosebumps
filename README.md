@@ -23,7 +23,17 @@ def bar_custom(current, total, width=80):
 
 def download(url, out_path):
     wget.download(url, out=out_path, bar=bar_custom)
+    
+################### unzip fastA file (if this is .gz) #########################
 
+def unzipfiles(dir):
+    list = os.listdir(dir)
+    for item in list:
+        fa = '.fa.gz'
+        if item.find(fa) > 0:
+            cmd = "gzip -d " + dir + item
+            print(cmd)
+            os.system(cmd)   
 ```
 
 
