@@ -27,6 +27,7 @@ else:
 ```
 
 getfiles.py functions
+input : release version, species, reference Id, output dir path
 ```c
 
 def bar_custom(current, total, width=80):
