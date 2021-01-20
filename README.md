@@ -14,8 +14,8 @@ Biopython, gzip, wget
 
 ## getFiles.py
 
-Download reference files on Ensembl DB through wget 
-if the files already exists, you can pass this step through input 'n' 
++ Download reference files on Ensembl DB through wget 
++ if the files already exists, you can pass this step through input 'n' 
 
 pipeline.py
 ```c
@@ -27,6 +27,7 @@ else:
 ```
 
 getfiles.py functions
+
 input : release version, species, reference Id, output dir path
 ```c
 
