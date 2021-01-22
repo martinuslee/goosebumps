@@ -1,7 +1,7 @@
 # RNA-Seq-pipeline
 RNA_Seq Python Pipeline 
 
-requirement : python3 fastqc trimmomatic star
+requirement : python3 Fastqc Trimmomatic Star featureCounts , and *.fastq files
 
 Biopython, gzip, wget, getopt
 
