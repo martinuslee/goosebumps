@@ -16,20 +16,20 @@ Biopython, gzip, wget, getopt
 ```
 + To Download reference files 
 ```
-  -v Ensembl version
-  -s Scientific Name
-  -i Ref version 
-  -p /PATH/ ( 
+  -v <Ensembl version>
+  -s <Scientific Name>
+  -i <Ref version >
+  -p </PATH/> ( 
 ```
 + To launch Pipeline tools
 ```
   --tdir <TRIMMOMATIC TOOL PATH>
-  --th Number of Thread 
-  --tver Adapter Ver.
-  --mode STAR Mode (default alignReads)
-  --T Number of CPU Core for featureCounts
-  --fout featureCounts outputfile.txt
-  --fastq <file1> <file2>
+  --th <Number of Thread>
+  --tver <Adapter Ver.>
+  --mode <STAR Mode> (default alignReads)
+  --T <int> Number of CPU Core for featureCounts
+  --fout <featureCounts outputfile.txt>
+  --fastq <file1.fastq.gz> <file2.fastq.gz>
 ```
 ## pipeline.py 
 
