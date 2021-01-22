@@ -12,10 +12,14 @@ Biopython, gzip, wget, getopt
   python3 pipeline.py -v 102 -s coturnix_japonica -p /disk11/3.Pipeline_test_ljh/ --tdir /program/Trimmomatic/ --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --T 4 --fout featureCount.txt --fastq SRR390728_1.fastq.gz SRR390728_2.fastq.gz
 ```
 To Download fastq files 
+```
   -v Ensembl version
   -s Scientific Name
   -i Ref version 
   -p /PATH/ 
+```
+To launch Pipeline tools
+```
   --tdir <TRIMMOMATIC TOOL PATH>
   --th Number of Thread 
   --tver Adapter Ver.
@@ -23,8 +27,7 @@ To Download fastq files
   --T Number of CPU Core for featureCounts
   --fout featureCounts outputfile.txt
   --fastq <file1> <file2>
- 
-
+```
 ## pipeline.py 
 
 + this is the main script file.
