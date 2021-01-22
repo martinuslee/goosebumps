@@ -19,7 +19,7 @@ Biopython, gzip, wget, getopt
   -v <Ensembl version>
   -s <Scientific Name>
   -i <Ref version >
-  -p </PATH/> ( 
+  -p </PATH/> where fastq files exist
 ```
 + To launch Pipeline tools
 ```
