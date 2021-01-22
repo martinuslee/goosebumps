@@ -8,9 +8,9 @@ Biopython, gzip, wget
 -------------------------------
 
 + example command 
-'''
+```
   python3 pipeline.py -v 102 -s coturnix_japonica -p /disk11/3.Pipeline_test_ljh/ --tdir /program/Trimmomatic/trimmomatic-0.39.jar --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --T 4 --fout featureCount.txt --fastq SRR390728_1.fastq.gz SRR390728_2.fastq.gz
-'''
+```
 
 ## pipeline.py 
 
