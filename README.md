@@ -23,8 +23,8 @@ Biopython, gzip, wget, getopt
 ```
 + To launch Pipeline tools
 ```
-  --tdir <TRIMMOMATIC TOOL PATH>
-  --th <Number of Thread>
+  --tdir <PATH> TRIMMOMATIC TOOL PATH
+  --th <int> Number of Thread
   --tver <Adapter Ver.>
   --mode <STAR Mode> (default alignReads)
   --T <int> Number of CPU Core for featureCounts
