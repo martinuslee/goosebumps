@@ -13,7 +13,7 @@ Biopython, gzip, wget, getopt
 ```
   python3 pipeline.py -v 102 -s coturnix_japonica -i Coturnix_japonica_2.0 -p /disk11/3.Pipeline_test_ljh/ --tdir /program/Trimmomatic/ --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --T 4 --fout featureCount.txt --fastq /disk11/3.Pipeline_test_ljh/SRR390728_1.fastq.gz /disk11/3.Pipeline_test_ljh/SRR390728_2.fastq.gz
 ```
-+ To Download fastq files 
++ To Download reference files 
 ```
   -v Ensembl version
   -s Scientific Name
