@@ -1,4 +1,4 @@
-# Goosebumps paired-end RNA-Seq pipeline
+# :astonished:Goosebumps paired-end RNA-Seq pipeline
 RNA_Seq Python Pipeline 
 
 requirement : python3 Fastqc Trimmomatic Star featureCounts , and *.fastq files
