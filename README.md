@@ -7,6 +7,11 @@ Biopython, gzip, wget
 
 -------------------------------
 
++ example command 
+'''
+python3 pipeline.py -v 102 -s coturnix_japonica -p /disk11/3.Pipeline_test_ljh/ --tdir /program/Trimmomatic/trimmomatic-0.39.jar --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --T 4 --fout featureCount.txt --fastq SRR390728_1.fastq.gz SRR390728_2.fastq.gz
+'''
+
 ## pipeline.py 
 
 + this is the main script file.
@@ -16,51 +21,6 @@ Biopython, gzip, wget
 
 + Download reference files on Ensembl DB through wget 
 + if the files already exists, you can pass this step through input 'n' 
-
-pipeline.py
-```c
-checkFiles = input("Do you want to download ref files [Y/n]$ ");
-if(checkFiles == 'Y'):
-    import getFiles
-else:
-    pass
-```
-
-getfiles.py functions
-
-input : release version, species, reference Id, output dir path
-```c
-p_a = "ftp://ftp.ensembl.org/pub/release-"+release+"/fasta/"+species+"/dna/"+Species+ dot + refID + dot + "dna.primary_assembly.fa.gz"
-ensembl = "ftp://ftp.ensembl.org/pub/release-"+release+"/gtf/"+species+ slash +Species+ dot + refID +dot + release + ".gtf.gz"
-
-link = [p_a,ensembl]
-```
-
-```c
-
-def bar_custom(current, total, width=80):
-    width=30
-    avail_dots = width-2
-    shaded_dots = int(math.floor(float(current) / total * avail_dots))
-    percent_bar = '[' + '■'*shaded_dots + ' '*(avail_dots-shaded_dots) + ']'
-    progress = "%d%% %s [%d / %d]" % (current / total * 100, percent_bar, current, total)
-    return progress
-
-def download(url, out_path):
-    wget.download(url, out=out_path, bar=bar_custom)
-    
-################### unzip fastA file (if this is .gz) #########################
-
-def unzipfiles(dir):
-    list = os.listdir(dir)
-    for item in list:
-        fa = '.fa.gz'
-        if item.find(fa) > 0:
-            cmd = "gzip -d " + dir + item
-            print(cmd)
-            os.system(cmd)   
-```
-
 
 ## fastqc.py 
 
