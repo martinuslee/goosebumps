@@ -31,19 +31,31 @@ Biopython, gzip, wget, getopt
 ## pipeline.py 
 
 + this is the main script file.
-+ you can use the functions below importing subscript files.
 
 ## getFiles.py
 
-+ Download reference files on Ensembl DB through wget 
-+ if the files already exists, you can pass this step through input 'n' 
++ Download reference files on Ensembl DB through wget. 
++ Other functions definition. 
 
 ## fastqc.py 
 
-fastqc command build fastq.html files to check quality check for the read files.
++ To build fastq.html files for the read files's quality check. 
 
 ## trimmomatic.py
 
++ Trimming read files and get 4 outputfiles (forward_paired, forward_unpaired, reverse_paired, reverse_unpaired)
+  + removing adapters... adapter options required
+
 ## starindexing.py
 
++ alignment step
+  + indexing fa file (reference file)
+
 ## starmapping.py
+
++ mapping seq files to gtf file 
+  + output data type is sorted bam
+  
+## FeatureCount.py
+ 
++ check expression rate
