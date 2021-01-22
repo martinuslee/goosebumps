@@ -1,4 +1,3 @@
-from Bio import SeqIO
 import sys 
 import re
 import os
@@ -7,19 +6,42 @@ import math
 import gzip
 
 
+# --runMode: STAR 프로그램의 실행모드 (인덱스 생성은 “genomeGenerate”로 설정함)
+# --genomeDir: 참조 유전체 데이터 파일의 인덱스를 생성하고 저장할 디렉토리
+# --genomeFastaFiles: 참조 유전체 서열 데이터 파일 (FASTA 포맷)
+# --sjdbOverhang  99 : reads가 101bp일때 씀, 안적어도 돌아감
+
 star = "STAR"
 s =" "  #   space bar 
 indexMode = "--runMode genomeGenerate"
-mapMode = "--runMode alignReads"      
-outdir = "--genomeDir /disk11/3.Pipeline_test_ljh/star" #  output directory
+mapMode = "--runMode alignReads"
+#outdir = "--genomeDir /disk11/3.Pipeline_test_ljh/star" #  output directory
+outdir = "--genomeDir"
 fasta = "--genomeFastaFiles"
-th = "runThreadN 16"
+th = "--runThreadN"
 gtf = "--sjdbGTFfile"
 intron = "(--alignIntronMax INTRONMAX)"
 outtype = "--outSAMtype BAM SortedByCoordinate"
 read = "--readFilesIn"
+overhang = "--sjdbOverhang 35"
 
 
+def getIndexAm(path, thN, mode, fafile, gtffile):
+    try:
+        mkdir = path + "STAR_Index"
+        os.makedirs(mkdir)
+        cmd = star + s + indexMode + s + th + s + thN + s + outdir + s + mkdir + s + fasta + s + fafile + s + gtf + s + gtffile + s + overhang 
+        print(cmd)
+        os.system(cmd)
+        
+    except FileExistsError:
+        # dir already exists..
+        #os.system("rm -d " +mkdir)
+        print("STAR Index dir already exists..\n")
+        pass
+    
+
+'''
 def getfileDir(dir, find):
     list = os.listdir(dir)
     for item in list:
@@ -29,25 +51,8 @@ def getfileDir(dir, find):
 
 
 dir = "/disk11/3.Pipeline_test_ljh/"
-#file1 = "/disk11/3.Pipeline_test_ljh/output_forward_paired_SRR390728_1.fastq.gz";
-#file2 = "/disk11/3.Pipeline_test_ljh/output_reverse_paired_SRR390728_2.fastq.gz";
 file1 = getfileDir(dir, '_1')
 file2 = getfileDir(dir, '_2')
 fafile = getfileDir(dir, 'primary_assembly')
-#fafile = "/disk11/3.Pipeline_test_ljh/Homo_sapiens.GRCh38.dna_rm.primary_assembly.fa"
-#gtffile = "/disk11/3.Pipeline_test_ljh/Homo_sapiens.GRCh38.102.gtf.gz"
 gtffile = getfileDir(dir, '.gtf')
-
-class faError(Exception):
-    def __str__(self):
-        return "star indexing error : fa file has something wrong.....!"    
-
-cmd = star + s + indexMode + s + outdir + s + fasta+ s + fafile
-
-try:
-    print(cmd)
-    os.system(cmd)
-    
-except faError as e:
-    print(e)
-    
+'''

@@ -1,23 +1,26 @@
 import os
 import wget 
 import math 
-
-## import getFiles
-
-os.system("pwd")
-
-
+import getFiles
 ###########################################             fastqc               ###########################################
 
-list = ["SRR390728_1.fastq.gz","SRR390728_2.fastq.gz"]
-inputq = []
 
-for i in list:
-    mod = i.replace(i, "fastqc "+i)
-    inputq.append(mod)
-   
-    
-print(inputq[0], inputq[1])
-
-for item in inputq:
-    os.system(item)
+            
+def getQC(files, dir):
+    try: 
+        mkdir = dir + "FASTQC_Results"
+        os.makedirs(mkdir)
+        name = '.fastq.gz'
+        getFiles.isFiles(files, dir, name)
+        #print(files)
+        print("\n Start FASTQC : ")
+        print("---------------------\n")
+        os.system("fastqc -o "+ mkdir+ " " + files[0]+ " " +files[1])
+        print("\nFinished FASTQC : ")
+        print("---------------------\n")
+            
+    except FileExistsError:
+        # dir already exists..
+        #os.system("rm -r " +mkdir)
+        print("FASTQC cd dir already exists..\n")
+        pass

@@ -1,4 +1,3 @@
-from Bio import SeqIO
 import sys 
 import re
 import os
@@ -6,14 +5,15 @@ import wget
 import math 
 import gzip
 
-
+# if the items which is looking for exist in the working dir
+# return full string that includes path from the root 
+'''
 def getfileDir(dir, find):
     list = os.listdir(dir)
     for item in list:
         if item.find(find) > 0:
             item = dir + item
             return item
-
 
 dir = "/disk11/3.Pipeline_test_ljh/"
 #file1 = "/disk11/3.Pipeline_test_ljh/output_forward_paired_SRR390728_1.fastq.gz";
@@ -24,7 +24,7 @@ fafile = getfileDir(dir, 'primary_assembly')
 #fafile = "/disk11/3.Pipeline_test_ljh/Homo_sapiens.GRCh38.dna_rm.primary_assembly.fa"
 #gtffile = "/disk11/3.Pipeline_test_ljh/Homo_sapiens.GRCh38.102.gtf.gz"
 gtffile = getfileDir(dir, '.gtf')
-
+'''
 
 ## second step : mapping 
 
@@ -50,20 +50,29 @@ star = "STAR"
 s =" "  #   space bar 
 indexMode = "--runMode genomeGenerate"
 mapMode = "--runMode alignReads"      
-outdir = "--genomeDir /disk11/3.Pipeline_test_ljh/star/" #  output directory
-fasta = "--genomeFastaFiles"
-th = "runThreadN 16"
-gtf = "--sjdbGTFfile"
+outdir = "--genomeDir"
+th = "--runThreadN"
 intron = "--alignIntronMax INTRONMAX"
 outtype = "--outSAMtype BAM SortedByCoordinate"
 read = "--readFilesIn"
 zcat = "--readFilesCommand zcat"
-outputFile = "--outFileNamePrefix testSample"
+#outputFile = "--outFileNamePrefix /disk11/3.Pipeline_test_ljh/STAR_map/testSample"
+outputFile = "--outFileNamePrefix"
 
-cmd = star + s + outdir + s + th + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile
 
-try:
-    print(cmd)
-    os.system(cmd)
-except:
-    print("error star mapping step has something wrong on py code")
+
+def getMapAm(path, thN, file1, file2):
+
+    try:
+        mkdir = path + "STAR_map"
+        os.makedirs(mkdir)
+        cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + "/testSample_"
+        print(cmd)
+        os.system(cmd)
+        
+    except FileExistsError:
+        # dir already exists..
+        #os.system("rm -r " + mkdir)
+        print("STAR map dir already exists..\n")
+        
+        
