@@ -5,6 +5,8 @@ requirement : python3 Fastqc Trimmomatic Star featureCounts , and *.fastq files
 
 Biopython, gzip, wget, getopt
 
+  :heavy_check_mark: Notice *.fastq files must be located in the same directory with option -p /Path/
+
 -------------------------------
 
 + example command 
