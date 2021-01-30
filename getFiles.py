@@ -88,7 +88,7 @@ def getfileDir(dir, find):
             
             
 def timeCheck(function, *args):
-    print(*args,'\n')
+    #print(*args,'\n')
     t1 = time.time()
     function(*args)
     

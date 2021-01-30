@@ -31,7 +31,6 @@ ja = " java -jar"
 
 s = " "
 
-
 def trimmomatic(path, tPATH, truseq, thread, fastq1, fastq2):
 
     mkdir = path+"Trimmomatic_Results"
@@ -69,5 +68,5 @@ def trimmomatic(path, tPATH, truseq, thread, fastq1, fastq2):
     
     except FileExistsError:
         # dir already exists..
-        os.system("rm -d " + mkdir) # 폴더만 생성되어 있다면 삭제
+        os.system("rm -d " + mkdir) # There's only an empty directory if an error occured 
         print("trim dir already exists..\nPlease Try it again..\n")

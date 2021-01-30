@@ -86,6 +86,7 @@ startTime = time.time()
 endTime = 0
 
 if os.path.isfile(Species+'.'+refID+'.'+release+'.gtf'):
+    print("you already have the files...!\n")
     check = False
 
 if check:
