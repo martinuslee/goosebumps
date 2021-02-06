@@ -57,7 +57,7 @@ def download(url, out_path):
     #print(out_path)
     wget.download(url, out=out_path, bar=bar_custom)
 
-################### unzip fastA file (if this is .gz) #########################
+########################################### unzip fastA file (if this is .gz) ###########################################
 
 def unzipfiles(dir):
     list = os.listdir(dir)

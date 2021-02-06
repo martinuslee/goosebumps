@@ -83,15 +83,12 @@ for o, a in options:
 
 # print(fastq1,fastq2)
 
-startTime = time.time()
-endTime = 0
-
-if os.path.isfile(Species+'.'+refID+'.'+release+'.gtf'):
+if os.path.isfile(PATH + '/' + Species + '.'+refID+'.'+release+'.gtf'):
     print("you already have the files...!\n")
     check = False
 
 if check:
-    getFiles.timeCheck(getFiles.getRef,release, species, refID, PATH)
+    getFiles.getRef(release, species, refID, PATH)
 else:
     pass
 
@@ -100,7 +97,7 @@ else:
 #getFiles.timeCheck(trimmomatic.trimmomatic, PATH, tPATH, truseq, thread, fastq1, fastq2)
 trimmomatic.trimmomatic(PATH, tPATH, truseq, thread, fastq1, fastq2)
 
-##############################################         FAST QC        ##############################################
+##############################################         FAST QC        ################################################
 
 #getFiles.timeCheck(fastqc.getQC, args, PATH)
 fastqc.getQC(args, PATH)
@@ -114,7 +111,7 @@ gtffile = getFiles.getfileDir(PATH, '.gtf')
 #getFiles.timeCheck(starindexing.getIndexAm, PATH, thread, mode, fafile, gtffile)
 starindexing.getIndexAm(PATH, thread, mode, fafile, gtffile)
 
-##############################################      STAR Mapping       ##############################################
+##############################################      STAR Mapping       ################################################# 
 
 mapDir = PATH+"Trimmomatic_Results/"
 file1 = getFiles.getfileDir(mapDir, 'output_forward_paired_')
@@ -127,7 +124,6 @@ starmapping.getMapAm(PATH, thread, file1, file2)
 
 #getFiles.timeCheck(featureCount.getFC, PATH, core, gtffile, fout)
 featureCount.getFC(PATH, core, gtffile, fout)
-#endTime = time.time()
 
 #print(" total : ", endTime - startTime)
 

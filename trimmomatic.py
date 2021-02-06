@@ -38,7 +38,7 @@ def trimmomatic(path, tPATH, truseq, thread, fastq1, fastq2):
         if os.path.isdir(path+'Trimmomatic_Results'):
             raise FileExistsError
         filename_forward = os.path.basename(fastq1)
-        
+        print(fastq1)
         filename_reverse = os.path.basename(fastq2) 
         
         toolDir = tPATH + "trimmomatic-0.39.jar"
@@ -54,12 +54,12 @@ def trimmomatic(path, tPATH, truseq, thread, fastq1, fastq2):
         illuminaclip_Attribute = "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
     
         print("--------------------")
-        cmd1 = s + ja + s + toolDir + s + attribute + s + filename_forward + s + filename_reverse + s + output_forward_paired + s + output_forward_unpaired
+        cmd1 = ja + s + toolDir + s + attribute + s + filename_forward + s + filename_reverse + s + output_forward_paired + s + output_forward_unpaired
         cmd2 = s + output_reverse_paired + s + output_reverse_unpaired + s + illuminaclip_adapters + s + illuminaclip_Attribute
 
     ### LET's get started
         cmd = cmd1 + cmd2
-        #print(cmd)
+        print(f"\n{cmd}\n")
         os.system(cmd)
         os.makedirs(mkdir)
         cmd = "mv "+ output_forward_paired + s + output_forward_unpaired + s + output_reverse_paired + s + output_reverse_unpaired + s + mkdir
