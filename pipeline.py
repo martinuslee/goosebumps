@@ -33,6 +33,7 @@ fout = None
 
 check = False
 
+
 for o, a in options:
     if o in ("-v"):
         release = a
@@ -96,11 +97,13 @@ else:
 
 ##############################################       Trimmomatic        ##############################################
      
-getFiles.timeCheck(trimmomatic.trimmomatic, PATH, tPATH, truseq, thread, fastq1, fastq2)
+#getFiles.timeCheck(trimmomatic.trimmomatic, PATH, tPATH, truseq, thread, fastq1, fastq2)
+trimmomatic.trimmomatic(PATH, tPATH, truseq, thread, fastq1, fastq2)
 
 ##############################################         FAST QC        ##############################################
 
-getFiles.timeCheck(fastqc.getQC, args, PATH)
+#getFiles.timeCheck(fastqc.getQC, args, PATH)
+fastqc.getQC(args, PATH)
 
 ##############################################      STAR Indexing       ##############################################
 
@@ -108,7 +111,8 @@ getFiles.timeCheck(fastqc.getQC, args, PATH)
 fafile = getFiles.getfileDir(PATH, 'toplevel')
 gtffile = getFiles.getfileDir(PATH, '.gtf')
 
-getFiles.timeCheck(starindexing.getIndexAm, PATH, thread, mode, fafile, gtffile)
+#getFiles.timeCheck(starindexing.getIndexAm, PATH, thread, mode, fafile, gtffile)
+starindexing.getIndexAm(PATH, thread, mode, fafile, gtffile)
 
 ##############################################      STAR Mapping       ##############################################
 
@@ -116,12 +120,13 @@ mapDir = PATH+"Trimmomatic_Results/"
 file1 = getFiles.getfileDir(mapDir, 'output_forward_paired_')
 file2 = getFiles.getfileDir(mapDir, 'output_reverse_paired_')
 
-getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1, file2)
+#getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1, file2)
+starmapping.getMapAm(PATH, thread, file1, file2)
 
 ##############################################      Feature Counts        ##############################################
 
 getFiles.timeCheck(featureCount.getFC, PATH, core, gtffile, fout)
 
-endTime = time.time()
+#endTime = time.time()
 
-print(" total : ", endTime - startTime)
+#print(" total : ", endTime - startTime)
