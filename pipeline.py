@@ -125,8 +125,10 @@ starmapping.getMapAm(PATH, thread, file1, file2)
 
 ##############################################      Feature Counts        ##############################################
 
-getFiles.timeCheck(featureCount.getFC, PATH, core, gtffile, fout)
-
+#getFiles.timeCheck(featureCount.getFC, PATH, core, gtffile, fout)
+featureCount.getFC(PATH, core, gtffile, fout)
 #endTime = time.time()
 
 #print(" total : ", endTime - startTime)
+
+#########################################################################################################################
