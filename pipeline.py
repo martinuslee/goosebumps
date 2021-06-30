@@ -144,11 +144,12 @@ print(*file2, sep="\n")
 #base_name = base_name.split('_')[3] + '_'
 #print(base_name)
 print(len(file1))
-for i in range(len(file1)):
+for i in range(0,len(file1)):
     base_name = os.path.basename(file1[i])
     base_name = base_name.split('_')[3] + '_'
-    print(base_name)
-    getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1[i], file2[i], base_name[i])   
+    #print(base_name)
+    print(i)
+    getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1[i], file2[i], base_name)   
 
 #getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1, file2)
 #starmapping.getMapAm(PATH, thread, file1, file2)

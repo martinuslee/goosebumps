@@ -59,9 +59,6 @@ zcat = "--readFilesCommand zcat"
 #outputFile = "--outFileNamePrefix /disk11/3.Pipeline_test_ljh/STAR_map/testSample"
 outputFile = "--outFileNamePrefix"
 
-def starMapp(function, path, thN, file1, file2):
-    return 
-
 def getMapAm(path, thN, file1, file2, outFileName):
     mkdir = path + "STAR_map/"
     
@@ -70,13 +67,13 @@ def getMapAm(path, thN, file1, file2, outFileName):
             print('caret')
             cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName
             print(cmd)
-            #os.system(cmd + ' ')
+            os.system(cmd + ' &')
         else:
             print('onion')
             os.makedirs(mkdir)
             cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName
             print(cmd)
-            #os.system(cmd + ' ')
+            os.system(cmd + ' &')
 
     except FileExistsError:
         # dir already exists..
