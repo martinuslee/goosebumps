@@ -28,7 +28,7 @@ def getIndexAm(path, thN, mode, fafile, gtffile):
     try:
         os.makedirs(mkdir)
         cmd = star + s + indexMode + s + th + s + thN + s + outdir + s + mkdir + s + fasta + s + fafile + s + gtf + s + gtffile + s + overhang 
-        #print(cmd)
+        print(cmd)
         os.system(cmd)  
     except FileExistsError:
         # dir already exists..

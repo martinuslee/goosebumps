@@ -4,7 +4,7 @@ import os
 import os.path
 import math 
 import gzip
-
+import getFiles
 
 #SLIDINGWINDOW : 5'end부터 시작해서 average quality가 threshold 값 미만인지 스캐닝
 #윈도우 사이즈 값 내의 퀄리티 이면서 threshold이하인 것들을 커팅해버리는 일명 슬라이딩 윈도우 트리밍을 하자
@@ -32,14 +32,15 @@ ja = " java -jar"
 s = " "
 
 def trimmomatic(path, tPATH, truseq, thread, fastq1, fastq2):
-
+    
     mkdir = path+"Trimmomatic_Results"
     try:
         if os.path.isdir(path+'Trimmomatic_Results'):
             raise FileExistsError
-        filename_forward = os.path.basename(fastq1)
-        print(fastq1)
-        filename_reverse = os.path.basename(fastq2) 
+        
+        #filename_forward = os.path.basename(path+"/data/"+fastq1)
+        filename_forward = os.path.basename(path+"data/"+fastq1)
+        filename_reverse = os.path.basename(path+"data/"+fastq2) 
         
         toolDir = tPATH + "trimmomatic-0.39.jar"
         # Outputs paired end
@@ -48,19 +49,22 @@ def trimmomatic(path, tPATH, truseq, thread, fastq1, fastq2):
         output_reverse_paired = path + "output_reverse_paired_" + filename_reverse
         output_reverse_unpaired = path + "output_reverse_unpaired_" + filename_reverse
 
-        attribute = "PE -threads " + thread+  " -phred33 "
+        attribute = "PE -threads " + thread +  " -phred33 "
         #illuminaclip_adapters = "ILLUMINACLIP:/program/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10"
         illuminaclip_adapters = "ILLUMINACLIP:" + tPATH + "adapters/"+truseq+":2:30:10"
         illuminaclip_Attribute = "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
     
         print("--------------------")
+        fastq1 = path + "data/" + fastq1
+        fastq2 = path + "data/" + fastq2
         cmd1 = ja + s + toolDir + s + attribute + s + fastq1 + s + fastq2 + s + output_forward_paired + s + output_forward_unpaired
         cmd2 = s + output_reverse_paired + s + output_reverse_unpaired + s + illuminaclip_adapters + s + illuminaclip_Attribute
 
     ### LET's get started
         cmd = cmd1 + cmd2
         print(f"\n{cmd}\n")
-        os.system(cmd)
+        os.system(cmd + ' &')
+        #print(cmd)
         os.makedirs(mkdir)
         cmd = "mv "+ output_forward_paired + s + output_forward_unpaired + s + output_reverse_paired + s + output_reverse_unpaired + s + mkdir
         os.system(cmd)
@@ -70,3 +74,28 @@ def trimmomatic(path, tPATH, truseq, thread, fastq1, fastq2):
         # dir already exists..
         os.system("rm -d " + mkdir) # There's only an empty directory if an error occured 
         print("trim dir already exists..\nPlease Try it again..\n")
+
+
+
+import time
+#from multiprocessing import Pool
+'''
+for i in range(len(fq)):
+    fastq1, fastq2 = fq[i][0], fq[i][1]
+    print(fastq1, fastq2)
+    start = int(time.time())
+    num_cores = 32
+    pool = Pool(num_cores)
+    print(pool.map(trimmomatic("/disk1/bijh/10.Circadian_Transcriptome/", "/program/Trimmomatic/" , "TruSeq3-PE.fa", '32', fastq1, fastq2), range(len(fq))))
+    print("***run time(sec) :", int(time.time()) - start)
+#    trimmomatic("/disk1/bijh/10.Circadian_Transcriptome/", "/program/Trimmomatic/" , "TruSeq3-PE.fa", '32', fastq1, fastq2)
+
+
+import parmap
+fq = getFiles.getFastqFiles("/disk1/bijh/10.Circadian_Transcriptome/data/")
+for i in range(len(fq)):
+    fastq1, fastq2 = fq[i][0], fq[i][1]
+    print(fastq1, fastq2)
+    trimmomatic("/disk1/bijh/10.Circadian_Transcriptome/", "/program/Trimmomatic/" , "TruSeq3-PE.fa", '32', fastq1, fastq2)
+    '''
+#parmap.map(trimmomatic, "/disk1/bijh/10.Circadian_Transcriptome/", "/program/Trimmomatic/" , "TruSeq3-PE.fa", '32', fastq1, fastq2, pm_pbar=True)

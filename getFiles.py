@@ -14,15 +14,13 @@ dot = "."
 slash ="/"
 #p_a = "ftp://ftp.ensembl.org/pub/release-"+release+"/fasta/"+species+"/dna/"+Species+ dot + refID + dot + "dna.primary_assembly.fa.gz"
 #ensembl = "ftp://ftp.ensembl.org/pub/release-"+release+"/gtf/"+species+ slash +Species+ dot + refID +dot + release + ".gtf.gz"
+#GRCm39
+# /disk1/bijh/10.Circadian_Transcriptome
 
-#link = [p_a,ensembl]
-#print(input)
 
-dic = { 1: 'GRCh38', 2:'GRCm38', 3:'GRCz11' }
+#python3 pipeline.py -v 104 -s mus_musculus -i GRCm39 -p /disk1/bijh/10.Circadian_Transcriptome/ --tdir /program/Trimmomatic/ --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --T 4 --fout featureCount.txt
 
-t1 =0
-t2= 0
-result = 0
+dic = { 1: 'GRCh38', 2:'GRCm39', 3:'GRCz11' } # 생물 종 선택 
 
 def getRef(release, species, refID,PATH ):
 
@@ -76,17 +74,44 @@ def isFiles(f, dir, name):
     for item in list: 
         if item.find(name) > 0:
             f.append(item)
-                
+
+
+
+def getFastqFiles(path_dir):
+    from pprint import pprint
+
+    path_dir = '/disk1/bijh/10.Circadian_Transcriptome/data/'
+    file_list = os.listdir(path_dir)
+    file_list.sort()
+
+    #print(file_list)
+
+    result = []
+
+    for i in range(0,len(file_list),2):
+        result.append([file_list[i],file_list[i+1]])
+    #pprint(result)
+    return result
+
                 
                 
 def getfileDir(dir, find):
-    list = os.listdir(dir)
-    for item in list:
-        if item.find(find) >= 0:
+    file_list = os.listdir(dir)
+    file_list.sort()
+    result  = list()
+    for item in file_list:
+        if find in item:
             item = dir + item
-            return item
+            result.append(item)
+    return result
+
+
             
-            
+
+# 시간 체크용 변수 
+t1 =0
+t2= 0
+result = 0           
 def timeCheck(function, *args):
     #print(*args,'\n')
     t1 = time.time()

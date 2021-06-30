@@ -2,6 +2,7 @@ import sys
 import re
 import os
 import math 
+import getFiles
 
 
 # if the items which is looking for exist in the working dir
@@ -58,19 +59,29 @@ zcat = "--readFilesCommand zcat"
 #outputFile = "--outFileNamePrefix /disk11/3.Pipeline_test_ljh/STAR_map/testSample"
 outputFile = "--outFileNamePrefix"
 
+def starMapp(function, path, thN, file1, file2):
+    return 
 
-
-def getMapAm(path, thN, file1, file2):
-    mkdir = path + "STAR_map"
+def getMapAm(path, thN, file1, file2, outFileName):
+    mkdir = path + "STAR_map/"
+    
     try:
-        os.makedirs(mkdir)
-        cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + "/testSample_"
-        #print(cmd)
-        os.system(cmd)
+        if os.path.isdir(path+'STAR_map'): # IF Theres not a STAT  MAP DIR
+            print('caret')
+            cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName
+            print(cmd)
+            #os.system(cmd + ' ')
+        else:
+            print('onion')
+            os.makedirs(mkdir)
+            cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName
+            print(cmd)
+            #os.system(cmd + ' ')
+
     except FileExistsError:
         # dir already exists..
         os.system("rm -d " + mkdir)
         print("STAR map Error occuered....\nPlease Try it again..\n")
         
         
-        
+

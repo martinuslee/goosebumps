@@ -3,8 +3,6 @@ import os
 import math 
 import getFiles
 ###########################################             fastqc               ###########################################
-
-
             
 def getQC(files, dir):
 
