@@ -29,8 +29,6 @@ Biopython, gzip, wget, getopt
   --tver <Adapter Ver.>
   --mode <STAR Mode> (default alignReads)
   --T <int> Number of CPU Core for featureCounts
-  --fout <featureCounts outputfile.txt>
-  --fastq <file1.fastq.gz> <file2.fastq.gz>
 ```
 ## pipeline.py 
 
