@@ -1,3 +1,4 @@
+from posixpath import basename
 import sys
 import re
 import os
@@ -77,9 +78,6 @@ for o, a in options:
     elif o in ("--T"):
         core = a
         # print(a)
-    elif o == '--fout':
-        fout = a
-        # print(a)
     else:
         assert False, "unhandled option"
 
@@ -89,9 +87,9 @@ for o, a in options:
 # python3 pipeline.py -v 102 -s coturnix_japonica -p /disk11/3.Pipeline_test_ljh/ --tdir /program/Trimmomatic/trimmomatic-0.39.jar --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --T 4 --fout featureCount.txt --fastq SRR390728_1.fastq.gz SRR390728_2.fastq.gz
 # python3 ~/disk11/3.Pipeline_test_ljh/pipeline.py -p /disk11/3.Pipeline_test_ljh/ --tdir /program/Trimmomatic --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --fastq SRR390728_1.fastq.gz SRR390728_2.fastq.gz
 # python3 pipeline.py -v 102 -s danio_rerio -i GRCz11 -p /disk11/3.Pipeline_test_ljh/ --tdir /program/Trimmomatic/trimmomatic-0.39.jar --th 16 --tver TruSeq3-PE.fa --mode genomeGenerate --fastq /disk11/3.Pipeline_test_ljh/SRR390728_1.fastq.gz /disk11/3.Pipeline_test_ljh/SRR390728_2.fastq.gz
-
+ #python3 pipeline.py -v 104 -s mus_musculus -i GRCm39 -p /disk1/bijh/10.Circadian_Transcriptome/ --tdir /program/Trimmomatic/ --th 32 --tver TruSeq3-PE.fa --mode genomeGenerate --T 4 --fout featureCount.txt
 # dir 불러오기
-#
+
 getFiles.getFastqFiles('/disk1/bijh/10.Circadian_Transcriptome/data/')
 # print(fastq1,fastq2)
 # check whether file already exists or not
@@ -138,26 +136,33 @@ getFiles.timeCheck(starindexing.getIndexAm, PATH,
 mapDir = PATH+"Trimmomatic_Results/"
 file1 = getFiles.getfileDir(mapDir, 'output_forward_paired_')
 file2 = getFiles.getfileDir(mapDir, 'output_reverse_paired_')
-print(*file1,'\n', sep='\n')
-print(*file2, sep="\n")
+gtffile = getFiles.getfileDir(PATH, '.gtf')
+#print(*file1,'\n', sep='\n')
+#print(*file2, sep="\n")
 #base_name = os.path.basename(file1[0])
 #base_name = base_name.split('_')[3] + '_'
 #print(base_name)
-print(len(file1))
-for i in range(0,len(file1)):
+#print(len(file1))
+'''
+for i in range(len(file1)):
     base_name = os.path.basename(file1[i])
     base_name = base_name.split('_')[3] + '_'
-    #print(base_name)
-    print(i)
-    getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1[i], file2[i], base_name)   
-
+    #print(i)
+    starmapping.getMapAm(PATH, thread, file1[i], file2[i], base_name)
+'''
 #getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1, file2)
-#starmapping.getMapAm(PATH, thread, file1, file2)
+#starmapping.getMapAm(PATH, thread, file1[i], file2[i], base_name)
 
 ##############################################      Feature Counts        ##############################################
 
-#getFiles.timeCheck(featureCount.getFC, PATH, core, gtffile, fout)
-#featureCount.getFC(PATH, core, gtffile, fout)
+
+for i in range(len(file1)):
+    base_name = os.path.basename(file1[i])
+    base_name = base_name.split('_')[3] + '_'
+    #print(gtffile[0])
+    #print(i)
+    #getFiles.timeCheck(featureCount.getFC, PATH, core, gtffile, fout)
+    featureCount.getFC(PATH, core, gtffile[0], base_name)
 
 #print(" total : ", endTime - startTime)
 #########################################################################################################################

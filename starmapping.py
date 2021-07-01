@@ -58,22 +58,25 @@ read = "--readFilesIn"
 zcat = "--readFilesCommand zcat"
 #outputFile = "--outFileNamePrefix /disk11/3.Pipeline_test_ljh/STAR_map/testSample"
 outputFile = "--outFileNamePrefix"
+junction = "--limitSjdbInsertNsj"
 
 def getMapAm(path, thN, file1, file2, outFileName):
-    mkdir = path + "STAR_map/"
+    mkdir = path + "STAR_test/"
     
     try:
-        if os.path.isdir(path+'STAR_map'): # IF Theres not a STAT  MAP DIR
+        if os.path.isdir(path+'STAR_test'): # IF Theres not a STAT  MAP DIR
             print('caret')
-            cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName
-            print(cmd)
-            os.system(cmd + ' &')
+            cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName 
+            #print(cmd)
+            os.system(cmd)
+            print("running___%s"%(outFileName))
         else:
             print('onion')
             os.makedirs(mkdir)
-            cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName
-            print(cmd)
-            os.system(cmd + ' &')
+            cmd = star + s + th + s + "16" + s + outdir + s + path + "STAR_Index" + s + read + s + file1 + s + file2 + s + zcat + s + outtype + s + outputFile + s + mkdir + outFileName 
+            #print(cmd)
+            os.system(cmd)
+            print("running___%s"%(outFileName))
 
     except FileExistsError:
         # dir already exists..
