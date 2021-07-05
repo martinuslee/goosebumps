@@ -100,7 +100,7 @@ if check:
     getFiles.getRef(release, species, refID, PATH)
 else:
     pass
-'''
+
 ##############################################       Trimmomatic        ##############################################
 
 #getFiles.timeCheck(trimmomatic.trimmomatic, PATH, tPATH, truseq, thread, fastq1, fastq2)
@@ -130,7 +130,7 @@ gtffile = getFiles.getfileDir(PATH, '.gtf')
 getFiles.timeCheck(starindexing.getIndexAm, PATH,
                    thread, mode, fafile, gtffile)
 #starindexing.getIndexAm(PATH, thread, mode, fafile, gtffile)
-'''
+
 ##############################################      STAR Mapping       #################################################
 
 mapDir = PATH+"Trimmomatic_Results/"
@@ -143,13 +143,13 @@ gtffile = getFiles.getfileDir(PATH, '.gtf')
 #base_name = base_name.split('_')[3] + '_'
 #print(base_name)
 #print(len(file1))
-'''
+
 for i in range(len(file1)):
     base_name = os.path.basename(file1[i])
     base_name = base_name.split('_')[3] + '_'
     #print(i)
     starmapping.getMapAm(PATH, thread, file1[i], file2[i], base_name)
-'''
+
 #getFiles.timeCheck(starmapping.getMapAm, PATH, thread, file1, file2)
 #starmapping.getMapAm(PATH, thread, file1[i], file2[i], base_name)
 
