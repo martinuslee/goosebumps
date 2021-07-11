@@ -60,6 +60,8 @@ zcat = "--readFilesCommand zcat"
 outputFile = "--outFileNamePrefix"
 junction = "--limitSjdbInsertNsj"
 
+# STAR --genomeDir /disk1/bijh/ref/star_Anas_platyrhynchos_platyrhynchos/ --genomeLoad NoSharedMemory --runThreadN 48 --readFilesIn ${sp}.R1.fq ${sp}.R2.fq --outFileNamePrefix ${sp}.STAR
+# 
 def getMapAm(path, thN, file1, file2, outFileName):
     mkdir = path + "STAR_test/"
     

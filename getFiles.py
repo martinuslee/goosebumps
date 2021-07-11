@@ -80,7 +80,7 @@ def isFiles(f, dir, name):
 def getFastqFiles(path_dir):
     from pprint import pprint
 
-    path_dir = '/disk1/bijh/10.Circadian_Transcriptome/data/'
+    #path_dir = '/disk1/bijh/10.Circadian_Transcriptome/data/'
     file_list = os.listdir(path_dir)
     file_list.sort()
 
